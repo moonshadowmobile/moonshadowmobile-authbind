@@ -1,0 +1,5 @@
+# PUPPET MANAGED FILE
+# Any changes will be OVERWRITTEN!!!!!!!!!!!
+<%- @ports.each do |port, addr| -%>
+<%= addr %>,<%= port %>
+<% end -%>
