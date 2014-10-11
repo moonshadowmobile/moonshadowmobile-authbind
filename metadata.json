@@ -1,0 +1,14 @@
+{
+  "name": "moonshadowmobile-authbind",
+  "version": "0.0.0",
+  "author": "moonshadowmobile",
+  "summary": "Authbind module for Debian and Ubuntu.",
+  "license": "Simplified BSD",
+  "source": "https://github.com/moonshadowmobile/moonshadowmobile-authbind",
+  "project_page": "https://github.com/moonshadowmobile/moonshadowmobile-authbind",
+  "issues_url": "https://github.com/moonshadowmobile/moonshadowmobile-authbind/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
