@@ -53,21 +53,21 @@ define authbind::addr (
   }
 
   if $group == '' {
-    file { "${authbind::parmas::addr_dir}/${addr},${port}":
+    file { "${::authbind::parmas::addr_dir}/${addr},${port}":
       mode    => '0700',
       require => [
         User[$user],
-        Package[$authbind::params::package_name],
+        Package[$::authbind::params::package_name],
       ],
     }
   } else {
-    file { "${authbind::parmas::addr_dir}/${addr},${port}":
+    file { "${::authbind::parmas::addr_dir}/${addr},${port}":
       group   => $group,
       mode    => '0770',
       require => [
         User[$user],
         Group[$group],
-        Package[$authbind::params::package_name],
+        Package[$::authbind::params::package_name],
       ],
     }
   }

@@ -45,7 +45,7 @@ define authbind::port (
   }
 
   if $group == '' {
-    file { "${authbind::parmas::port_dir}/${port}":
+    file { "${::authbind::parmas::port_dir}/${port}":
       mode    => '0700',
       require => [
         User[$user],
@@ -53,7 +53,7 @@ define authbind::port (
       ],
     }
   } else {
-    file { "${authbind::parmas::port_dir}/${port}":
+    file { "${::authbind::parmas::port_dir}/${port}":
       group   => $group,
       mode    => '0770',
       require => [
