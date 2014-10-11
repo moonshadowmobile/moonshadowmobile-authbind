@@ -13,9 +13,9 @@
     * [Classes](#classes)
         * [Class: authbind](#class:-authbind)
     * [Defined Types](#defined-types)
-        * [Defined Type: authbind::port](#defined-type:-authbind::port)
-        * [Defined Type: authbind::addr](#defined-type:-authbind::addr)
-        * [Defined Type: authbind::uid](#defined-type:-authbind::uid)
+        * [Defined Type: authbind::port](#defined-type-authbindport)
+        * [Defined Type: authbind::addr](#defined-type-authbindaddr)
+        * [Defined Type: authbind::uid](#defined-type-authbinduid)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Contributors- The ones to thank or blame](#contributors)
 
