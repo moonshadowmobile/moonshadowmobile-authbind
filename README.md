@@ -11,7 +11,7 @@
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
     * [Classes](#classes)
-        * [Class: authbind](#class:-authbind)
+        * [Class: authbind](#class-authbind)
     * [Defined Types](#defined-types)
         * [Defined Type: authbind::port](#defined-type-authbindport)
         * [Defined Type: authbind::addr](#defined-type-authbindaddr)
