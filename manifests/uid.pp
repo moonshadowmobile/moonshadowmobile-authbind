@@ -1,10 +1,10 @@
-# == Type: authbind::uuid
+# == Type: authbind::uid
 #
-# Configure access for a user UUID to a privileged port with a certain IP range
+# Configure access for a user UID to a privileged port with a certain IP range
 #
 # === Parameters
 #
-# [*uuid*]
+# [*uid*]
 #   User authbind will allow access for. Defaults to the title.
 #
 # [*ports*]
@@ -12,7 +12,7 @@
 #
 # === Examples
 #
-#  authbind::uuid { '33':
+#  authbind::uid { '33':
 #    ports => { 443 => '0.0.0.0',
 #               80  => '192.168.0.0/16', }
 #  }
@@ -25,16 +25,16 @@
 #
 # Copyright 2014 Moonshadow Mobile Inc.
 #
-define authbind::uuid (
+define authbind::uid (
   $ports,
-  $uuid = $title,
+  $uid = $title,
 ) {
-  file { "${::authbind::parmas::uuid_dir}/${uuid}":
+  file { "${::authbind::parmas::uid_dir}/${uid}":
     ensure  => file,
-    owner   => $uuid,
-    group   => $uuid,
+    owner   => $uid,
+    group   => $uid,
     mode    => '0750',
-    content => template("${module_name}/uuid.erb"),
+    content => template("${module_name}/uid.erb"),
     require => [
       Package[$::authbind::params::package_name],
     ],

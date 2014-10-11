@@ -19,7 +19,7 @@ class authbind::params {
       $base_dir     = '/etc/authbind'
       $port_dir     = "${base_dir}/byport"
       $addr_dir     = "${base_dir}/byaddr"
-      $uuid_dir     = "${base_dir}/byuuid"
+      $uid_dir      = "${base_dir}/byuid"
     }
     default: {
       fail("${module_name} is not supported on a ${::osfamily} based system.")

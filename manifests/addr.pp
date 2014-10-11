@@ -9,7 +9,7 @@
 # === Parameters
 #
 # [*user*]
-#   User name which authbind will allow access for. Defaults to root.
+#   User name which authbind will allow access for.
 #
 # [*group*]
 #   Optional group name which authbind will allow access for if provided.
@@ -43,7 +43,7 @@
 #
 define authbind::addr (
   $port,
-  $user  = 'root',
+  $user,
   $group = '',
   $addr  = $title
 ) {
