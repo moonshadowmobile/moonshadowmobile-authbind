@@ -26,8 +26,8 @@
 # Copyright 2014 Moonshadow Mobile Inc.
 #
 define authbind::uuid (
-  ports,
-  uuid = $title,
+  $ports,
+  $uuid = $title,
 ) {
   file { "${authbind::parmas::uuid_dir}/${uuid}":
     ensure  => file,

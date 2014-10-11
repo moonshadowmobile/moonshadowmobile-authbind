@@ -9,7 +9,7 @@
 # === Parameters
 #
 # [*user*]
-#   Required user name which authbind will allow access for.
+#   User name which authbind will allow access for. Defaults to root.
 #
 # [*group*]
 #   Optional group name which authbind will allow access for if provided.
@@ -42,10 +42,10 @@
 # Copyright 2014 Moonshadow Mobile Inc.
 #
 define authbind::addr (
-  user,
-  port,
-  group = '',
-  addr  = $title
+  $port,
+  $user  = 'root',
+  $group = '',
+  $addr  = $title
 ) {
   File {
     ensure => file,

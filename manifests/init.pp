@@ -9,7 +9,15 @@
 #
 # === Examples
 #
-#  class { 'authbind': }
+# To start:
+#
+#  include authbind
+#
+# to remove authbind:
+#
+#  class { 'authbind':
+#    package_ensure => absent
+#  }
 #
 # === Authors
 #
@@ -21,10 +29,10 @@
 #
 class authbind (
   $package_ensure = $autbind::params::package_ensure,
-) inherits authbind::params {
+) {
   validate_string($package_ensure)
 
-  package { $package_name:
+  package { $authbind::params::package_name:
     ensure => $package_ensure,
   }
 }

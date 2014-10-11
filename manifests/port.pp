@@ -35,9 +35,9 @@
 # Copyright 2014 Moonshadow Mobile Inc.
 #
 define authbind::port (
-  user,
-  group = '',
-  port  = $title
+  $user,
+  $group = '',
+  $port  = $title
 ) {
   File {
     ensure => file,

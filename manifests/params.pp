@@ -1,5 +1,17 @@
+# == Class: authbind::params
+#
+# Define defaults for os specific resources, and set module level variables.
+#
+# === Authors
+#
+# Tyler Yahn <tyler@moonshadowmobile.com>
+#
+# === Copyright
+#
+# Copyright 2014 Moonshadow Mobile Inc.
+#
 class authbind::params {
-  $package_ensure = 'present',
+  $package_ensure = 'present'
 
   case $::osfamily {
     'Debian': {
@@ -10,7 +22,7 @@ class authbind::params {
       $uuid_dir     = "${base_dir}/byuuid"
     }
     default: {
-      fail("The ${module_name} module is not supported on an ${::osfamily} based system.")
+      fail("${module_name} is not supported on a ${::osfamily} based system.")
     }
   }
 }
