@@ -1,6 +1,6 @@
 {
   "name": "moonshadowmobile-authbind",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "moonshadowmobile",
   "summary": "Authbind module for Debian and Ubuntu.",
   "license": "Simplified BSD",
