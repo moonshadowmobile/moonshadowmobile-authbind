@@ -29,14 +29,12 @@ define authbind::uid (
   $ports,
   $uid = $title,
 ) {
-  file { "${::authbind::parmas::uid_dir}/${uid}":
+  file { "${::authbind::conf_dir}/byuid/${uid}":
     ensure  => file,
     owner   => $uid,
     group   => $uid,
     mode    => '0750',
     content => template("${module_name}/uid.erb"),
-    require => [
-      Package[$::authbind::params::package_name],
-    ],
+    require => Anchor['authbind::installed'],
   }
 }

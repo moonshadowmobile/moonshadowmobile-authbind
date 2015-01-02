@@ -39,28 +39,20 @@ define authbind::port (
   $group = '',
   $port  = $title
 ) {
-  File {
-    ensure => file,
-    owner  => $user,
-  }
-
   if $group == '' {
-    file { "${::authbind::parmas::port_dir}/${port}":
+    File {
       mode    => '0700',
-      require => [
-        User[$user],
-        Package[$authbind::params::package_name],
-      ],
     }
   } else {
-    file { "${::authbind::parmas::port_dir}/${port}":
+    File {
       group   => $group,
       mode    => '0770',
-      require => [
-        User[$user],
-        Group[$group],
-        Package[$authbind::params::package_name],
-      ],
     }
+  }
+
+  file { "${::authbind::conf_dir}/byport/${port}":
+    ensure  => file,
+    owner   => $user,
+    require => Anchor['authbind::installed'],
   }
 }

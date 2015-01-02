@@ -47,28 +47,20 @@ define authbind::addr (
   $group = '',
   $addr  = $title
 ) {
-  File {
-    ensure => file,
-    owner  => $user,
-  }
-
   if $group == '' {
-    file { "${::authbind::parmas::addr_dir}/${addr},${port}":
+    File {
       mode    => '0700',
-      require => [
-        User[$user],
-        Package[$::authbind::params::package_name],
-      ],
     }
   } else {
-    file { "${::authbind::parmas::addr_dir}/${addr},${port}":
+    File {
       group   => $group,
       mode    => '0770',
-      require => [
-        User[$user],
-        Group[$group],
-        Package[$::authbind::params::package_name],
-      ],
     }
+  }
+
+  file { "${::authbind::conf_dir}/byaddr/${addr},${port}":
+    ensure  => file,
+    owner   => $user,
+    require => Anchor['authbind::installed'],
   }
 }
