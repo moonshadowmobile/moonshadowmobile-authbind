@@ -11,7 +11,7 @@
 # Copyright 2014 Moonshadow Mobile Inc.
 #
 class authbind::params {
-  $authbind_version   = 'stable'
+  $authbind_version   = 'latest'
   $authbind_build_dir = '/opt'
   $conf_dir           = '/etc/authbind'
 

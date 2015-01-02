@@ -117,7 +117,7 @@ The authbind module's main class `authbind`, installs the appropriate packages.
 
 ##### `version`
 
-   The authbind project version to install.  Valid values are the releases (i.e. 2.1.1 and 1.2.0) or stable (which will be the latest release).
+   The authbind project version to install.  Valid values are the releases (i.e. 2.1.1 and 1.2.0) or latest (which will be the latest release).
 
 ##### `build_dir`
 
@@ -125,7 +125,7 @@ The authbind module's main class `authbind`, installs the appropriate packages.
 
 ##### `conf_dir`
 
-   Directory to keep all the authbind rules (port, uid, and user).  Defaults to '/etc/authbind/'.
+   Directory to keep all the authbind rules (port, uid, and user).  Defaults to '/etc/authbind/'.  This only has an effect if building from source.
 
 ### Defined Types
 

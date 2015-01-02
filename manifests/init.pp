@@ -11,7 +11,7 @@
 #
 # [*version*]
 #   The authbind project version to install.  Valid values are the releases
-#   (i.e. 2.1.1 and 1.2.0) or stable (which will be the latest release).
+#   (i.e. 2.1.1 and 1.2.0) or latest (which will be the latest release).
 #
 # [*build_dir*]
 #   Directory to keep all the build artifacts when building the project from
@@ -19,7 +19,7 @@
 #
 # [*conf_dir*]
 #   Directory to keep all the authbind rules (port, uid, and user).  Defaults
-#   to '/etc/authbind/'.
+#   to '/etc/authbind/'.  This only has an effect if building from source.
 #
 # === Authors
 #
@@ -36,13 +36,19 @@ class authbind (
   $conf_dir       = $::authbind::params::conf_dir,
 ) inherits authbind::params {
   validate_bool($build_authbind)
-  validate_re($version, ['^stable$', '^1.2.0$', '^2.1.1$'])
+  validate_re($version, ['^latest$', '^1.2.0$', '^2.1.1$'])
   validate_absolute_path($build_dir)
   validate_absolute_path($conf_dir)
 
   if ( $build_authbind == false ) {
     case $::operatingsystem {
       'Debian', 'Ubuntu': {
+        if ( $conf_dir != $::authbind::params::conf_dir ) {
+          notify { 'Explain conf_dir not set':
+            message => "The ${::operatingsystem} authbind package only allows a configuration directory at '${::authbind::params::conf_dir}'.",
+          }
+        }
+
         package { 'authbind':
           ensure => $version,
         }
@@ -113,7 +119,7 @@ class authbind (
 
     # If this fails, then a 'make clean' can help
     exec { 'authbind::compile':
-      command => 'make',
+      command => "make etc_dir='${conf_dir}'",
       creates => "${build_dir}/${unpacked_dir}/authbind",
       cwd     => "${build_dir}/${unpacked_dir}/",
     }
@@ -138,7 +144,7 @@ class authbind (
     }
 
     exec { 'authbind::install_man':
-      command => 'make install_man',
+      command => "make install_man etc_dir='${conf_dir}'",
       creates => '/usr/local/share/man/man1/authbind.1',
       cwd     => "${build_dir}/${unpacked_dir}/",
       require => Anchor['authbind::install'],
