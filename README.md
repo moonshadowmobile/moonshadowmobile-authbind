@@ -16,7 +16,6 @@
         * [Defined Type: authbind::port](#defined-type-authbindport)
         * [Defined Type: authbind::addr](#defined-type-authbindaddr)
         * [Defined Type: authbind::uid](#defined-type-authbinduid)
-5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Contributors- The ones to thank or blame](#contributors)
 
 ## Overview
@@ -25,9 +24,9 @@ The authbind module installs, configures, and manages the Authbind service.
 
 ## Module Description
 
-The authbind module is used to setup and manage access to privileged network ports using the Authbind service.  Authbind allows a program that is run as a non-privileged user to access low-numbered ports. This permission is determined for file content stored in the authbind configuration area.
+The authbind module is used to setup and manage access to privileged network ports using the Authbind service.  Authbind allows a program that is run as a non-privileged user to access low-numbered ports. This permission is granted based on file existence in the authbind configuration directory.
 
-There are three ways for permission to be granted:
+There are three ways for permission to be allowed:
 
 * By port.
 * By address and port.
@@ -44,7 +43,7 @@ This module provides defined types to utilize each of these methods.
 
 ### Beginning with authbind
 
-`include ::authbind` will set up a basic authbind system without any privleges.
+`include ::authbind` will set up a basic authbind system without any privileges escalation.
 
 ## Usage
 
@@ -112,13 +111,21 @@ authbind::uid { '78':
 
 The authbind module's main class `authbind`, installs the appropriate packages.
 
-##### `package_ensure`
+##### `build_authbind`
 
-Specify the state of the authbind package.
+   Boolean defining if authbind should be build from source.  This is becomes an option on Debian based systems. Otherwise, this must be true otherwise the install will fail.
 
-##### `package_name`
+##### `version`
 
-The name of the package in the system repository.
+   The authbind project version to install.  Valid values are the releases (i.e. 2.1.1 and 1.2.0) or stable (which will be the latest release).
+
+##### `build_dir`
+
+   Directory to keep all the build artifacts when building the project from source.  Defaults to '/opt/'.
+
+##### `conf_dir`
+
+   Directory to keep all the authbind rules (port, uid, and user).  Defaults to '/etc/authbind/'.
 
 ### Defined Types
 
@@ -165,15 +172,6 @@ UID of the user authbind will allow access for. Defaults to the `title`.
 ##### `ports`
 
 Hash mapping each port of interest to an address or address range.
-
-## Limitations
-
-Authbind only has package releases on Debian and Ubuntu and has been tested on the following:
-
-* Debian 7.x
-* Ubuntu 14.04
-
-It might be posible in the future to build authbind from the source.
 
 ## Contributors
 
