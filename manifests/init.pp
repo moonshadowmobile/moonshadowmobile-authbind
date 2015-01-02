@@ -4,6 +4,23 @@
 #
 # === Parameters
 #
+# [*build_authbind*]
+#   Boolean defining if authbind should be build from source.  This is
+#   becomes an option on Debian based systems. Otherwise, this must be
+#   true otherwise the install will fail.
+#
+# [*version*]
+#   The authbind project version to install.  Valid values are the releases
+#   (i.e. 2.1.1 and 1.2.0) or stable (which will be the latest release).
+#
+# [*build_dir*]
+#   Directory to keep all the build artifacts when building the project from
+#   source.  Defaults to '/opt/'.
+#
+# [*conf_dir*]
+#   Directory to keep all the authbind rules (port, uid, and user).  Defaults
+#   to '/etc/authbind/'.
+#
 # === Authors
 #
 # Tyler Yahn <tyler@moonshadowmobile.com>

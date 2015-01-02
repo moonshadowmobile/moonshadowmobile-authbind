@@ -1,6 +1,6 @@
 # == Class: authbind::params
 #
-# Define defaults for os specific resources, and set module level variables.
+# Define defaults for OS specific values.
 #
 # === Authors
 #
