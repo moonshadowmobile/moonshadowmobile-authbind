@@ -11,18 +11,19 @@
 # Copyright 2014 Moonshadow Mobile Inc.
 #
 class authbind::params {
-  $package_ensure = 'present'
+  $authbind_version   = 'stable'
+  $authbind_build_dir = '/opt'
+  $conf_dir           = '/etc/authbind'
 
-  case $::osfamily {
-    'Debian': {
-      $package_name = 'authbind'
-      $base_dir     = '/etc/authbind'
-      $port_dir     = "${base_dir}/byport"
-      $addr_dir     = "${base_dir}/byaddr"
-      $uid_dir      = "${base_dir}/byuid"
+  case $::operatingsystem {
+    'Debian', 'Ubuntu': {
+      $build_authbind = false
+    }
+    'Fedora', 'RedHat', 'CentOS', 'OEL', 'OracleLinux', 'Amazon', 'Scientific': {
+      $build_authbind = true
     }
     default: {
-      fail("${module_name} is not supported on a ${::osfamily} based system.")
+      fail("${module_name} is not supported on ${::operatingsystem}.")
     }
   }
 }
